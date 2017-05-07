@@ -4,23 +4,55 @@
 	<meta charset="UTF-8">
 	<title>首页</title>
 	<link rel="stylesheet" href="dest/css/index.min.css">
-	
+	<style type="text/css">
+		.red{color:red;}
+		.green{color:green;}
+	</style>
 </head>
 <body>
-	首页12344
-	<div class="box"></div>
+	<h1>数据双向绑定</h1>
+	<input type="text" ng-model="name" name="">
+	{{name}}
+	<h1>数据渲染</h1>
+	<ul>
+		<li ng-repeat="item in data" ng-class='{true:"red",false:"green"}[$last]'>
+			序号：{{ $index + 1}} 姓名：{{ item.name }} 年龄：{{ item.age }} 第几个：{{$first?"第一个":"其他"}} {{ $last?"最后一个":"其他"}}
+		</li>
+	</ul>
+	<h1>Angular表达式与javascript表达式互调</h1>
+	<p ng-class="green">执行javascript表达式</p>
+	<input type="text" ng-model="num1" name="">
+	<button ng-click="add(num1)">加法</button>
+	<p ng-class="red">执行angular表达式</p>
+	<input type="text" ng-model= "num2"	>
+	<span ng-bind="$eval(num2)"></span><br>
+	num1:{{num1}}<br>
+	new2:{{num1}}
 
-	<div>
-		{{ name }}
-	</div>
 </body>
 </html>
 <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="lib/angular/angular.min.js"></script>
 <script type="text/javascript" >
 	var m = angular.module('hd',[])
-	m.controller("ctrl",['$scope',function($scope){
+	m.controller("ctrl",['$scope','$window',function($scope,$window){
+		$scope.red = "red";
+		$scope.green = "green";
+		$scope.boolean = true;
 		$scope.name = "yida123";
+		$scope.num1 = 0;
+		$scope.num2 = '20 + 1 | number:0'
+		$scope.data = [
+			{name:"zhangsan",age:12},
+			{name:"lisi",age:18},
+			{name:"wangwu",age:23},
+			{name:"xiaoming",age:8}
+		];
+		$scope.add = function(num){
+			var new2 = parseInt(num)+1;
+			$scope.num1 = "hello"
+			$window.alert(new2)
+		}
 	}])
 </script>
 
