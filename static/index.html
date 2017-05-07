@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hd" ng-controller="ctrl">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="dest/css/index.min.css">
+	
+</head>
+<body>
+	首页12344
+	<div class="box"></div>
+
+	<div>
+		{{ name }}
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+<script type="text/javascript" >
+	var m = angular.module('hd',[])
+	m.controller("ctrl",['$scope',function($scope){
+		$scope.name = "yida123";
+	}])
+</script>
+
